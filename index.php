@@ -7,7 +7,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Login to MyChat</title>
     <!-- jQuery JS file -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <!-- bootstrap CSS file -->
@@ -60,7 +60,7 @@
         </form>
 
         <!-- no account? make one -->
-        <div class="text-center small" style="color: #76428B;">Don't have an account? <a href="signup.php"> Create
+        <div class="text-center small" style="color: black;">Don't have an account? <a href="signup.php"> Create
                 one</a></div>
     </div>
 
