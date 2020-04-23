@@ -17,6 +17,7 @@
     <!-- google fonts -->
     <link href="https://fonts.googleapis.com/css?family=Courgette|Pacifico|Roboto:400,700&display=swap"
         rel="stylesheet">
+    <link rel="stylesheet" href="css/signin.css">
 </head>
 
 <body>
@@ -45,22 +46,22 @@
                 <input type="password" name="pass" class="form-control" placeholder="password" autocomplete="off"
                     required>
             </div>
-<!-- forgot my password help -->
-            <div class="small"
-            >Forgot password? <a href="forgot_pass.php">Click here</a>
-        </div>
-        <!-- break -->
-        <br>
+            <!-- forgot my password help -->
+            <div class="small">Forgot password? <a href="forgot_pass.php">Click here</a>
+            </div>
+            <!-- break -->
+            <br>
 
-        <!-- submit form -->
-        <div class="form-group">
+            <!-- submit form -->
+            <div class="form-group">
                 <button type="submit" class="btn btn-primary btn-block btn-lg" name="sign_in">Sign in</button>
             </div>
             <!-- <?php // include("signin_user.php"); ?> -->
         </form>
 
         <!-- no account? make one -->
-        <div class="text-center small" style="color: #76428B;">Don't have an account? <a href="signup.php"> Create one</a></div>
+        <div class="text-center small" style="color: #76428B;">Don't have an account? <a href="signup.php"> Create
+                one</a></div>
     </div>
 
 </body>
