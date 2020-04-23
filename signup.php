@@ -85,7 +85,7 @@
             <div class="form-group">
                 <button type="submit" class="btn btn-primary btn-block btn-lg" name="sign_up">Sign up</button>
             </div>
-            <!-- <?php // include("signup_user.php"); ?> -->
+            <?php include("signup_user.php"); ?>
         </form>
 
         <!-- no account? make one -->
