@@ -29,5 +29,21 @@ if(isset($_POST['sign_up'])) {
     }
 
     if ($rand == 1)
-}
+        // $profile_pic = "images/avatar1.";
+     else if ($rand == 2) 
+        // $profile_pic = "images/avatar2.";
+
+        $sql = "INSERT into users(user_name, user_pass, user_email, user_profile, user_country, user_gender) VALUES('$name', '$pass', '$email', '$profile_pic', '$country', '$gender')";
+
+        $query = mysqli_query($con, $sql);
+
+        if ($query) {
+            echo "<script>alert('Congratulations $name, your account has been created successfully')</script>";
+            echo "<script>window.open('signin.php', '_self')</script>";
+        }
+        else {
+            echo "<script>alert('Registration failed, try again!')</script>";
+            echo "<script>window.open('signup.php', '_self')</script>";
+        }
+    }
 ?>
