@@ -1,6 +1,6 @@
 <?php
 // connect to database
-$con = mysqli_connect('localhost', 'bhagya', 'test1234', 'todolist');
+$con = mysqli_connect('localhost', 'bhagya', 'test1234', 'mychat');
 
 // check connection 
 if (!$con) {
