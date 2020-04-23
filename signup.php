@@ -43,7 +43,7 @@
             <!-- password input -->
             <div class="form-group">
                 <label for="user_pass">Password</label>
-                <input type="password" name="user_pass" class="form-control" placeholder="password" autocomplete="off"
+                <input type="password" name="user_pass" class="form-control" placeholder="Password" autocomplete="off"
                     required>
             </div>
             <!-- email input -->
@@ -70,9 +70,9 @@
                 <label for="user_gender">Gender</label>
                 <select name="user_gender" class="form-control" required>
                     <option disabled>Select your Gender</option>
-                    <option>male</option>
-                    <option>female</option>
-                    <option>others</option>
+                    <option>Male</option>
+                    <option>Female</option>
+                    <option>Other</option>
                 </select>
             </div>
             <!-- terms and conditions -->
