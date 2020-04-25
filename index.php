@@ -7,7 +7,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login to MyChat</title>
+    <title>MyChat</title>
     <!-- jQuery JS file -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <!-- bootstrap CSS file -->
@@ -56,7 +56,9 @@
             <div class="form-group">
                 <button type="submit" class="btn btn-primary btn-block btn-lg" name="sign_in">Sign in</button>
             </div>
-            <!-- <?php // include("signin_user.php"); ?> -->
+            <!-- this PHP is run -->
+            <!-- I WANT TO MAKE THIS MORE EFFICIENT. LOOK AT THE WBSITE CODE!!! -->
+            <?php include("index_user.php"); ?>
         </form>
 
         <!-- no account? make one -->
