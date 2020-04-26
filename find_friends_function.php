@@ -7,7 +7,7 @@ $con = mysqli_connect('localhost', 'bhagya', 'test1234', 'mychat') or die("Conne
 		
 		if(isset($_GET['search_btn'])){
 		$search_query = htmlentities($_GET['search_query']);
-		$get_user = "select * from users where user_name like '%$search_query%' or user_country like '%$search_query%'";
+		$get_user = "SELECT * from users where user_name like '%$search_query%' or user_country like '%$search_query%'";
 		}
 		else{
 		$get_user = "SELECT * from users ORDER BY user_country,user_name DESC LIMIT 5"; 
@@ -26,7 +26,7 @@ $con = mysqli_connect('localhost', 'bhagya', 'test1234', 'mychat') or die("Conne
 			
 			echo "
 			<div class='card'>
-		      <img src='../$user_profile'>
+		      <img src='$user_profile'>
 		      <h1>$user_name</h1>
 		      <p class='title'>$country</p>
 		      <p>$gender</p>
