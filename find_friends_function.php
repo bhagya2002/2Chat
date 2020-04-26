@@ -24,7 +24,25 @@ function search_user() {
         $user_profile = $row['user_profile'];
         $user_country = $row['user_country'];
         $user_gender = $row['user_gender'];
-    }
-}
 
+        //now displaying all at once 
+			
+			echo "
+			<div class='card'>
+		      <img src='../$user_profile'>
+		      <h1>$user_name</h1>
+		      <p class='title'>$country</p>
+		      <p>$gender</p>
+		      <form method='post'>
+		        <p><button name='add'>Chat with $user_name</button></p>
+		      </form>
+		    </div><br><br>
+			";
+		
+		if(isset($_POST['add'])){
+			echo "<script>window.open('../home.php?user_name=$user_name','_self')</script>";
+		}	
+		}
+		
+	}
 ?>
