@@ -25,13 +25,14 @@ else{ ?>
 </head>
 
 <body>
-    <nav class="navbar-brand">
+    <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
         <a href="#" class="navbar-brand">
             <?php
-$user = $_SESSION['user_name'];
-$get_user = "SELECT * from users where user_email='$user'";
-$run_user = mysqli_query($con, $get_user);
-$row = mysqli_fetch_array($run_user);
+
+$user = $_SESSION['user_email'];
+$get_user = "SELECT * from users where user_email='$user'"; 
+$run_user = mysqli_query($con,$get_user);
+$row=mysqli_fetch_array($run_user);
 
 $user_name = $row['user_name'];
 echo" <a class='navbar-brand' href='../home.php?user_name=$user_name'>MyChat</a>";
@@ -47,7 +48,7 @@ echo" <a class='navbar-brand' href='../home.php?user_name=$user_name'>MyChat</a>
         <div class="col-sm-4">
             <form action="#" class="search_form">
                 <input type="text" name="search_query" placeholder="Search Friends" autocomplete="off" required>
-                <button class="btn" type="submit" name="search_brn">Search</button>
+                <button class="btn" type="submit" name="search_btn">Search</button>
             </form>
         </div>
         <div class="col-sm-4">
