@@ -3,7 +3,12 @@
 session_start();
 include("include/connection.php");
 
-?>
+if(!isset($_SESSION['user_email'])){
+	
+	header("location: index.php");
+
+}
+else{ ?>
 <html>
 <head>
 	<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -34,22 +39,21 @@ include("include/connection.php");
 						$user = $_SESSION['user_email'];
 						$get_user = "SELECT * from users where user_email='$user'"; 
 						$run_user = mysqli_query($con,$get_user);
-						$row = mysqli_fetch_array($run_user);
+						$row=mysqli_fetch_array($run_user);
 									
 						$user_id = $row['user_id']; 
-                        $user_name = $row['user_name'];
+						$user_name = $row['user_name'];
+					?>
 
-                    ?>
-                    
 					<!-- getting the user data on which user click -->
 					<?php
 						if(isset($_GET['user_name'])){
 
-                            global $con; 
+						global $con; 
 								
 						$get_username = $_GET['user_name'];
 									
-						$get_user = "SELECT * from users where user_name = '$get_username'";
+						$get_user = "SELECT * from users where user_name='$get_username'";
 								
 						$run_user = mysqli_query($con,$get_user);
 						
@@ -57,12 +61,11 @@ include("include/connection.php");
 						
 						$username = $row_user['user_name'];
 						$user_profile_image = $row_user['user_profile'];
-						
+						}
 
-						$total_messages = "SELECT * from users_chats WHERE sender_username='$user_name' AND receiver_username='$row_user[user_name]' OR (receiver_username='$user_name' AND sender_username='$row_user[user_name]')"; 
-						$run_messages = mysqli_query($con, $total_messages); 
-                        $total = mysqli_num_rows($run_messages);
-                        }
+						$total_messages = "SELECT * from users_chats where (sender_username='$user_name' AND receiver_username='$username') OR (receiver_username='$user_name' AND sender_username='$username')"; 
+						$run_messages = mysqli_query($con,$total_messages); 
+						$total = mysqli_num_rows($run_messages);
 					?>
 					<div class="col-md-12 right-header">
 						<div class="right-header-img">
@@ -71,7 +74,7 @@ include("include/connection.php");
 						<div class="right-header-detail">
 							<form method="post">
 								<p><?php echo"$username";?></p>
-								<span><?php echo "$total"; ?> messages</span>&nbsp &nbsp
+								<span><?php echo $total; ?> messages</span>&nbsp &nbsp
 								<button name="logout" class="btn btn-danger">Logout</button>
 							</form>
 							<?php
@@ -79,7 +82,7 @@ include("include/connection.php");
 									$update_msg = mysqli_query($con, "UPDATE users SET log_in='Offline' WHERE user_name='$user_name'");
 									header("Location:logout.php");
 									exit();
-								
+								}
 							?>
 						</div>
 					</div>
@@ -88,19 +91,19 @@ include("include/connection.php");
 					<div id="scrolling_to_bottom" class="col-md-12 right-header-contentChat">
 						<?php
 
-						$update_msg = mysqli_query($con, "UPDATE users_chats SET msg_status='read' WHERE sender_username='$row_user[user_name]' AND receiver_username='$user_name'");
+						$update_msg = mysqli_query($con, "UPDATE users_chats SET msg_status='read' WHERE sender_username='$username' AND receiver_username='$user_name'");
 
-						$sel_msg = "SELECT * from users_chats WHERE sender_username='$user_name' AND receiver_username='$row_user[user_name]' OR (receiver_username='$user_name' AND sender_username='$row_user[user_name]') ORDER by 1 ASC"; 
+						$sel_msg = "SELECT * from users_chats where (sender_username='$user_name' AND receiver_username='$username') OR (receiver_username='$user_name' AND sender_username='$username') ORDER by 1 ASC"; 
 						$run_msg = mysqli_query($con,$sel_msg);		
 						
-						while($row = mysqli_fetch_array($run_msg)){
+						while($row=mysqli_fetch_array($run_msg)){
 			
 						$sender_username = $row['sender_username'];
 						$receiver_username = $row['receiver_username'];
 						$msg_content = $row['msg_content'];
 						$msg_status = $row['msg_status'];
 						$msg_date = $row['msg_date'];
-                        }
+
 						?>
 						<ul>
 						<?php
@@ -179,5 +182,18 @@ include("include/connection.php");
 			}
 		}
 	?>
+
+	<script>
+		$('#scrolling_to_bottom').animate({
+		scrollTop: $('#scrolling_to_bottom').get(0).scrollHeight}, 1000);
+	</script>
+	<script type="text/javascript">
+		$(document).ready(function(){
+	    	var height = $(window).height();
+	    	$('.left-chat').css('height', (height - 92) + 'px');
+	    	$('.right-header-contentChat').css('height', (height - 163) + 'px');
+	    });
+	</script>
 </body>
 </html>
+<?php } ?>
