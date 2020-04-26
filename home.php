@@ -55,7 +55,7 @@ else{ ?>
 									
 						$get_user = "SELECT * from users where user_name='$get_username'";
 								
-						$run_user = mysqli_query($con,$get_user);
+						$run_user = mysqli_query($con, $get_user);
 						
 						$row_user=mysqli_fetch_array($run_user);
 						
@@ -63,9 +63,9 @@ else{ ?>
 						$user_profile_image = $row_user['user_profile'];
 						}
 
-						$total_messages = "SELECT * from users_chats where (sender_username='$user_name' AND receiver_username='$username') OR (receiver_username='$user_name' AND sender_username='$username')"; 
-						$run_messages = mysqli_query($con,$total_messages); 
-						$total = mysqli_num_rows($run_messages);
+						$total_messages = "SELECT * from users_chat where (sender_username='$user_name' AND receiver_username='$username') OR (receiver_username='$user_name' AND sender_username='$username')"; 
+                        $run_messages = mysqli_query($con,$total_messages); 
+                        $total = mysqli_num_rows($run_messages);
 					?>
 					<div class="col-md-12 right-header">
 						<div class="right-header-img">
@@ -91,9 +91,9 @@ else{ ?>
 					<div id="scrolling_to_bottom" class="col-md-12 right-header-contentChat">
 						<?php
 
-						$update_msg = mysqli_query($con, "UPDATE users_chats SET msg_status='read' WHERE sender_username='$username' AND receiver_username='$user_name'");
+						$update_msg = mysqli_query($con, "UPDATE users_chat SET msg_status='read' WHERE sender_username='$username' AND receiver_username='$user_name'");
 
-						$sel_msg = "SELECT * from users_chats where (sender_username='$user_name' AND receiver_username='$username') OR (receiver_username='$user_name' AND sender_username='$username') ORDER by 1 ASC"; 
+						$sel_msg = "SELECT * from users_chat where (sender_username='$user_name' AND receiver_username='$username') OR (receiver_username='$user_name' AND sender_username='$username') ORDER by 1 ASC"; 
 						$run_msg = mysqli_query($con,$sel_msg);		
 						
 						while($row=mysqli_fetch_array($run_msg)){
@@ -175,7 +175,7 @@ else{ ?>
 				";
 			}
 			else{
-			$insert = "INSERT into users_chats(sender_username,receiver_username,msg_content,msg_status,msg_date) values ('$user_name','$username','$msg','unread',NOW())";
+			$insert = "INSERT into users_chat(sender_username,receiver_username,msg_content,msg_status,msg_date) values ('$user_name','$username','$msg','unread',NOW())";
 			
 			$run_insert = mysqli_query($con,$insert);
 
