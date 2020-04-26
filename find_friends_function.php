@@ -13,7 +13,7 @@ function search_user() {
 
     if(isset($_GET['search_btn'])) {
         $search_qurey = htmlentities($_GET['search_query']);
-        $get_user = "SELECT * from users where user_name like '%$search_qurey%' or user_country like '%$search_qurey%'";
+        $get_user = "SELECT * from users WHERE user_name LIKE '%$search_qurey%' or user_country LIKE '%$search_qurey%'";
     }else {
         $get_user = "SELECT * from users order by user_country, user_name DESC LIMIT 5";
     }

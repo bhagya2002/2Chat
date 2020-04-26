@@ -58,3 +58,4 @@ echo" <a class='navbar-brand' href='../home.php?user_name=$user_name'>MyChat</a>
 </body>
 
 </html>
+<?php } ?>
