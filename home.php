@@ -26,7 +26,7 @@ else{ ?>
 			<div class="col-md-3 col-sm-3 col-xs-12 left-sidebar">
 				<div class="input-group searchbox">
 					<div class="input-group-btn">
-						<center><a href="include/find_friends.php"><button class="btn btn-default search-icon" name="search_user" type="submit">Add new user</button></a></center>
+						<center><a href="find_friends.php"><button class="btn btn-default search-icon" name="search_user" type="submit">Add new user</button></a></center>
 					</div>
 				</div>
 				<div class="left-chat">
