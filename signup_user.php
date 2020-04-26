@@ -56,7 +56,7 @@ if(isset($_POST['sign_up'])) {
         } // if not run this
         else {
             echo "<script>alert('Registration failed, try again!')</script>";
-            echo "<script>window.open('signup.php', '_self')</script>";
+            echo "<script>window.open('index.php', '_self')</script>";
         }
     }
 ?>
