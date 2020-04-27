@@ -30,7 +30,7 @@
 			<button type="submit" class="btn btn-primary btn-block btn-lg" name="submit">Submit</button>
 		</div>
     </form>
-	<div class="text-center small" style='color:#67428B;'>Back to signin?<a href="signin.php">Click here</a></div>
+	<div class="text-center small" style='color:#67428B;'>Back to signin?<a href="index.php">Click here</a></div>
 </div>
 </body>
 </html>
