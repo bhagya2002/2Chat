@@ -88,7 +88,7 @@ input[type="file"] {
 			<label id='update_profile'><i class='fa fa-user-circle-o' aria-hidden='true'></i> Select Profile
             <input type='file' name='u_image' size='60' />
             </label>
-            <button id='button_profile' name='update'>&nbsp &nbsp &nbsp<i class='fa fa-heart' aria-hidden='true'></i> Update Profile</button>
+            <button id='button_profile' name='update'>&nbsp; &nbsp; &nbsp;<i class='fa fa-heart' aria-hidden='true'></i> Update Profile</button>
 			</form>
 		</div><br><br>
 		";
