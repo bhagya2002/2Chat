@@ -8,13 +8,13 @@ include("header.php");
 
 if(!isset($_SESSION['user_email'])){
   
-  header("location: signin.php");
+  header("location: index.php");
 
 }
 else { ?>
 <html>
 <head>
-  <title>Account Setting</title>
+  <title>Change Account Password</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
@@ -33,7 +33,7 @@ else { ?>
   </div>
   <?php 
       $user = $_SESSION['user_email'];
-      $get_user = "select * from users where user_email='$user'"; 
+      $get_user = "SELECT * from users where user_email='$user'"; 
       $run_user = mysqli_query($con,$get_user);
       $row=mysqli_fetch_array($run_user);
             
@@ -81,7 +81,7 @@ else { ?>
               $pass2 = $_POST['u_pass2'];
 
               $user = $_SESSION['user_email'];
-              $get_pass = "select * from users where user_email='$user'";
+              $get_pass = "SELECT * from users where user_email='$user'";
               $run_pass = mysqli_query($con,$get_pass);
               $row=mysqli_fetch_array($run_pass);
                     
@@ -102,10 +102,10 @@ else { ?>
                   </div>
                 ";
               }
-              if($pass1 < 9 AND $pass2 < 9){
+              if($pass1 < 8 AND $pass2 < 8){
                 echo"
                   <div class='alert alert-danger'>
-                    <strong>Use 9 or more than 9 characters</strong> 
+                    <strong>Use 8 or more characters</strong> 
                   </div>
                 ";
               }
@@ -114,7 +114,7 @@ else { ?>
                 $update_pass = mysqli_query($con, "UPDATE users SET user_pass='$pass1' WHERE user_email='$user'");
                 echo"
                   <div class='alert alert-danger'>
-                    <strong>Your Password is changed</strong> 
+                    <strong>Your PASSWORD is changed</strong> 
                   </div>
                 ";
               }
