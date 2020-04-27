@@ -28,8 +28,6 @@ $con = mysqli_connect('localhost', 'bhagya', 'test1234', 'mychat') or die("Conne
 			<div class='card'>
 		      <img src='$user_profile'>
 		      <h1>$user_name</h1>
-		      <p class='title'>$country</p>
-		      <p>$gender</p>
 		      <form method='post'>
 		        <p><button name='add'>Chat with $user_name</button></p>
 		      </form>
