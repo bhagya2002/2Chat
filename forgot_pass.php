@@ -35,36 +35,43 @@
 </body>
 </html>
 <?php 
+// session start
 session_start();
 
+// include a file
 include("include/connection.php"); 
 
-
-
+// when the submit button is pressed
 	if(isset($_POST['submit'])){
 	
+		// get the values and filter it
 	$email = htmlentities(mysqli_real_escape_string($con,$_POST['email']));
 	$recovery_account = htmlentities(mysqli_real_escape_string($con,$_POST['bf']));
 	
+	// sql query statemtn
 	$select_user = "SELECT * from users where user_email='$email' AND forgotten_answer='$recovery_account'";
 	
+	// run this qurey
 	$query = mysqli_query($con,$select_user); 
 	
+	// this is the returned value
 	$check_user = mysqli_num_rows($query);
 	
+	// check is smth got returned
 	if($check_user==1){
 	
+		// store value if smth gets returned
 	$_SESSION['user_email']=$email;
 	
+	// redirect
 	echo "<script>window.open('create_password.php','_self')</script>";
 	
 	}
 	else {
+		// run this if nothing was returend/flase infornmation
 	echo "<script>alert('Your Email or your Bestfriend name is Incorrect')</script>";
+	// open the page again
 	echo "<script>window.open('forgot_pass.php','_self')</script>";
 	}
-	
 	}
-
-
 ?>

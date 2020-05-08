@@ -1,9 +1,12 @@
 <!DOCTYPE html>
 <?php
+// session start
 session_start();
+// inlude files
 include("find_friends_function.php");
 include("include/connection.php");
 
+// not signed in?...
 if(!isset($_SESSION['user_email'])){
 	
 	header("location: index.php");
