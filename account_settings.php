@@ -1,17 +1,21 @@
 <!DOCTYPE html>
 <?php
+// session start
 session_start();
+// include files to run here
 include("include/connection.php");
 include("header.php");
 ?>
 <?php 
 
+// if the session is not on then...
 if(!isset($_SESSION['user_email'])){
-  
+  // redirect user to the home page
   header("location: index.php");
-
 }
-else { ?>
+else { 
+  ?>
+
 <html>
 <head>
   <title>Account Setting</title>
@@ -34,11 +38,17 @@ else { ?>
   <div class="col-sm-2">
   </div>
   <?php 
+  // store the email of the user
       $user = $_SESSION['user_email'];
-      $get_user = "select * from users where user_email='$user'"; 
+
+      // get user information form the database
+      $get_user = "SELECT * from users where user_email='$user'"; 
+      // run the sql statement to get returned info from database
       $run_user = mysqli_query($con,$get_user);
+      // results are in an array
       $row=mysqli_fetch_array($run_user);
             
+      // seperate founded results to get more info on user
       $user_name = $row['user_name'];
       $user_pass = $row['user_pass'];
       $user_email = $row['user_email'];
@@ -120,29 +130,40 @@ else { ?>
                       <br><br>
                       </form>
                       <?php
-                      if(isset($_POST['sub'])){
-                        $bfn = htmlentities($_POST['content']);
 
+                      // form validation
+                      if(isset($_POST['sub'])){
+                        // get user entered info and then filter it
+                        $bfn = htmlentities($_POST['content']);
+// if the input field is empty then...
                         if($bfn==''){
-                
+                //  tell the user this
                         echo "<script>alert('Please Enter Something!')</script>";
+                        // reopen the current widnow to prompt again
                         echo "<script>window.open('account_settings.php','_self')</script>";
-                        
+
+                        // end the if statement here
                         exit();
                         
                         }
                         else {
 
+                          // if the user entered valid info in the field then run this code to update the database
                         $update = "UPDATE users set forgotten_answer='$bfn' where user_email='$user'";
-              
+              // run sql to store values
                         $run = mysqli_query($con,$update);
                         
+                        // if the data is updated
                         if($run){
                         
+                          // tells user the data is being processed and updated
                         echo "<script>alert('Working...!')</script>";
                         echo "<script>window.open('account_settings.php?','_self')</script>";
+                        // opens the windown again
                         }else{
+                          // if it doesnt update then tell the user that an error occured
                         echo "<script>alert('Error while Updating information...!')</script>";
+                        // reopen the window
                         echo "<script>window.open('account_settings.php','_self')</script>";
                         }
                         }
@@ -171,19 +192,23 @@ else { ?>
         </form>
         <?php
 
+// update button pressed
           if(isset($_POST['update'])){
           
+            // filter the user entered data
           $user_name = htmlentities($_POST['u_name']);
           $email = htmlentities($_POST['u_email']);
           $u_country = htmlentities($_POST['u_country']);
           $u_gender = htmlentities($_POST['u_gender']);
           
-          
+          // update sql statement
           $update = "UPDATE users set user_name='$user_name',user_email='$email',user_country='$u_country',user_gender='$u_gender' where user_email='$user'";
-          
+          // run the sql statement
           $run = mysqli_query($con,$update); 
           
+          // if successful...
           if($run){
+            // reopen the window
               echo "<script>window.open('account_settings.php','_self')</script>";
           }
         }
@@ -196,6 +221,7 @@ else { ?>
 </body>
 </html>
 <script>
+// show the password button
 function show_password() {
     var x = document.getElementById("mypass");
     if (x.type === "password") {

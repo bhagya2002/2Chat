@@ -34,35 +34,41 @@
 </body>
 </html>
 <?php 
+// start session
 session_start();
 
+// include file
 include("include/connection.php"); 
 
-
-
+// change button is clicked
 	if(isset($_POST['change'])){
 		
+		// get inputted value
 		$user = $_SESSION['user_email'];
 	    $pass1 = $_POST['pass1'];
 	    $pass2 = $_POST['pass2'];
 
+		// if the passwords r wrong...
 	    if($pass1 != $pass2){
 	        echo"
 	          <div class='alert alert-danger'>
 	            <strong>Your new password did't match with each other</strong> 
 	          </div>
 	        ";
-	    }
+		}
+		// if the password is less than 8 characters
 	    if($pass1 < 8 AND $pass2 < 8){
 	        echo"
 	          <div class='alert alert-danger'>
 	            <strong>Use 8 or more than 8 characters</strong> 
 	          </div>
 	        ";
-	    }
+		}
+		// if the pass and repass r the same then update the password row
 	    if($pass1 == $pass2){
             $update_pass = mysqli_query($con, "UPDATE users SET user_pass='$pass1' WHERE user_email='$user'");
-            session_destroy();
+			session_destroy();
+			// redirect user
             echo"
             	<script>alert('Go ahead and signin')</script>
             	<script>window.open('index.php','_self')</script>

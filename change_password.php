@@ -1,13 +1,17 @@
 <!DOCTYPE html>
 <?php
+// session start
 session_start();
+
+// include files
 include("include/connection.php");
 include("header.php");
 ?>
 <?php 
 
+// if the session is not on...
 if(!isset($_SESSION['user_email'])){
-  
+// redirect user  
   header("location: index.php");
 
 }
@@ -32,6 +36,7 @@ else { ?>
   <div class="col-sm-2">
   </div>
   <?php 
+  // get the user information
       $user = $_SESSION['user_email'];
       $get_user = "SELECT * from users where user_email='$user'"; 
       $run_user = mysqli_query($con,$get_user);
@@ -75,18 +80,22 @@ else { ?>
           </table>
         </form>
         <?php
+        // submit button pressed
           if(isset($_POST['change'])){
               $c_pass = $_POST['current_pass'];
               $pass1 = $_POST['u_pass1'];
               $pass2 = $_POST['u_pass2'];
 
+              // get the user for which the password is changing for
               $user = $_SESSION['user_email'];
               $get_pass = "SELECT * from users where user_email='$user'";
               $run_pass = mysqli_query($con,$get_pass);
               $row=mysqli_fetch_array($run_pass);
                     
+              // get the old password
               $user_password = $row['user_pass'];
 
+              // check if the entered password matches the stored password
               if($c_pass !== $user_password){
                 echo"
                   <div class='alert alert-danger'>
@@ -95,6 +104,7 @@ else { ?>
                 ";
               }
 
+              // if the new passwords dont match then let the user know
               if($pass1 != $pass2){
                 echo"
                   <div class='alert alert-danger'>
@@ -102,6 +112,7 @@ else { ?>
                   </div>
                 ";
               }
+              // if the pass is less than 8 characters
               if($pass1 < 8 AND $pass2 < 8){
                 echo"
                   <div class='alert alert-danger'>
@@ -110,6 +121,7 @@ else { ?>
                 ";
               }
 
+              // if everything is valid then change the passwords
               if($pass1 == $pass2 AND $c_pass == $user_password){
                 $update_pass = mysqli_query($con, "UPDATE users SET user_pass='$pass1' WHERE user_email='$user'");
                 echo"

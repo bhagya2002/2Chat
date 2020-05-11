@@ -1,15 +1,19 @@
 <?php
 $con = mysqli_connect('localhost', 'bhagya', 'test1234', 'mychat') or die("Connection was not established");
 
+// search for users
 	function search_user(){
-	
+	// global variable
 		global $con;
 		
+		// when the search button is pressed
 		if(isset($_GET['search_btn'])){
+			// select users
 		$search_query = htmlentities($_GET['search_query']);
 		$get_user = "SELECT * from users where user_name like '%$search_query%' or user_country like '%$search_query%'";
 		}
 		else{
+			// get the users and limit 5 to show
 		$get_user = "SELECT * from users ORDER BY user_country,user_name DESC LIMIT 5"; 
 		}
 		
@@ -23,7 +27,6 @@ $con = mysqli_connect('localhost', 'bhagya', 'test1234', 'mychat') or die("Conne
 		  $gender = $row_user['user_gender'];
 			
 			//now displaying all at once 
-			
 			echo "
 			<div class='card'>
 		      <img src='$user_profile'>
