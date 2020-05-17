@@ -1,10 +1,12 @@
 <!DOCTYPE html>
 <?php
+// session start
 session_start();
+// include files
 include("include/connection.php");
 
+// if the email is not signed in then redirect
 if(!isset($_SESSION['user_email'])){
-	
 	header("location: index.php");
 
 }
